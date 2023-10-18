@@ -6,6 +6,6 @@ namespace ProjectAPI.Interfaces
     public interface IAdviceApi
     {
         Task<ResponseGenerico<AdviceModel>> AdviseSearch();
-        Task<ResponseGenerico<AdviceModel>> AdviseSearchId(string id);
+        Task<ResponseGenerico<AdviceModel>> AdviseSearchId(int id);
     }
 }

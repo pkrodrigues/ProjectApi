@@ -23,7 +23,7 @@ namespace ProjectAPI.Services
             return _mapper.Map<ResponseGenerico<AdviceResponse>>(advice);
         }
 
-        public async Task<ResponseGenerico<AdviceResponse>> AdviseSearchId(string id)
+        public async Task<ResponseGenerico<AdviceResponse>> AdviseSearchId(int id)
         {
             var advice = await _adviceApi.AdviseSearchId(id);
             return _mapper.Map<ResponseGenerico<AdviceResponse>>(advice);

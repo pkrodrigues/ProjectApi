@@ -17,6 +17,8 @@ namespace ProjectAPI.Rest
             {
                 var responseAdviceApi = await client.SendAsync(request);
                 var contentResp = await responseAdviceApi.Content.ReadAsStringAsync();
+                contentResp = contentResp.Replace("{\"slip\":" , "").Replace("}}", "}");
+                Console.WriteLine(contentResp);
                 var objResponse = JsonSerializer.Deserialize<AdviceModel>(contentResp);
 
                 if(responseAdviceApi.IsSuccessStatusCode)
@@ -28,10 +30,11 @@ namespace ProjectAPI.Rest
                     response.ErroRetorno = JsonSerializer.Deserialize<ExpandoObject>(contentResp);
                 }
             }
+            
             return response;
         }
 
-        public async Task<ResponseGenerico<AdviceModel>> AdviseSearchId(string id)
+        public async Task<ResponseGenerico<AdviceModel>> AdviseSearchId(int id)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.adviceslip.com/advice/{id}");
 

@@ -34,5 +34,25 @@ namespace ProjectAPI.Controllers
             return StatusCode((int)response.CodigoHttp, response.ErroRetorno);
         }
        }
+
+        [HttpGet("busca/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+        public async Task<ActionResult> AdviseSearchId([FromRoute] int id)
+        {
+            var response = await _adviceService.AdviseSearchId(id);
+
+            if (response.CodigoHttp == HttpStatusCode.OK)
+            {
+                return Ok(response.DadosRetorno);
+            }
+            else
+            {
+                return StatusCode((int)response.CodigoHttp, response.ErroRetorno);
+            }
+        }
     }
 }
